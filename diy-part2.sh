@@ -135,3 +135,28 @@
 # sed -e 's,https://downloads.immortalwrt.org,https://mirrors.sjtug.sjtu.edu.cn/immortalwrt,g' \
 #     -e 's,https://mirrors.vsean.net/openwrt,https://mirrors.sjtug.sjtu.edu.cn/immortalwrt,g' \
 #     -i.bak /etc/opkg/distfeeds.conf
+
+# 添加qmodem
+echo 'src-git qmodem https://github.com/FUjr/QModem.git;main' >> feeds.conf.default
+./scripts/feeds update qmodem
+./scripts/feeds install -a -f -p qmodem
+echo "
+CONFIG_PACKAGE_luci-i18n-qmodem-zh-cn=y
+CONFIG_PACKAGE_luci-i18n-qmodem-sms-zh-cn=y
+CONFIG_PACKAGE_luci-app-qmodem=y
+CONFIG_PACKAGE_luci-app-modem=n
+CONFIG_PACKAGE_luci-app-qmodem_INCLUDE_vendor-qmi-wwan=y
+# CONFIG_PACKAGE_luci-app-qmodem_INCLUDE_generic-qmi-wwan is not set
+CONFIG_PACKAGE_luci-app-qmodem_USE_TOM_CUSTOMIZED_QUECTEL_CM=y
+# CONFIG_PACKAGE_luci-app-qmodem_USING_QWRT_QUECTEL_CM_5G is not set
+# CONFIG_PACKAGE_luci-app-qmodem_USING_NORMAL_QUECTEL_CM is not set
+# CONFIG_PACKAGE_luci-app-qmodem_INCLUDE_ADD_PCI_SUPPORT is not set
+# CONFIG_PACKAGE_luci-app-qmodem_INCLUDE_ADD_QFIREHOSE_SUPPORT is not set
+# CONFIG_PACKAGE_luci-app-qmodem-hc=y
+# CONFIG_PACKAGE_luci-app-qmodem-mwan=y
+CONFIG_PACKAGE_luci-app-qmodem-sms=y
+# CONFIG_PACKAGE_luci-app-qmodem-ttl=y
+CONFIG_PACKAGE_qmodem=y
+CONFIG_PACKAGE_quectel-CM-5G=y
+CONFIG_PACKAGE_quectel-CM-5G-M=y
+" >> .config
