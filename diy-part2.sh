@@ -143,7 +143,8 @@ echo 'src-git qmodem https://github.com/FUjr/QModem.git;main' >> feeds.conf.defa
 echo "
 CONFIG_PACKAGE_luci-i18n-qmodem-zh-cn=y
 CONFIG_PACKAGE_luci-i18n-qmodem-sms-zh-cn=y
-CONFIG_PACKAGE_luci-app-qmodem=y
+CONFIG_PACKAGE_luci-app-qmodem-next=y
+CONFIG_PACKAGE_luci-app-qmodem-monitor=y
 CONFIG_PACKAGE_luci-app-modem=n
 CONFIG_PACKAGE_luci-app-qmodem_INCLUDE_vendor-qmi-wwan=y
 # CONFIG_PACKAGE_luci-app-qmodem_INCLUDE_generic-qmi-wwan is not set
